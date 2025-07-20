@@ -1,36 +1,26 @@
-# Prompt user for the task description
-task = input("Enter your task: ").strip()
+# daily_reminder.py
 
-# Prompt user for the priority level
-priority = input("Priority (high/medium/low): ").strip().lower()
+# Prompt the user for task details
+task = input("Enter your task: ")
+priority = input("Priority (high/medium/low): ").lower()
+time_bound = input("Is it time-bound? (yes/no): ").lower()
 
-# Prompt user if the task is time-bound
-time_bound = input("Is it time-bound? (yes/no): ").strip().lower()
-
-# Use match-case to process based on priority
+# Use match-case to handle priority levels
 match priority:
     case "high":
-        message = f"Reminder: '{task}' is a high priority task"
+        if time_bound == "yes":
+            print(f"Reminder: '{task}' is a high priority task that requires immediate attention today!")
+        else:
+            print(f"Note: '{task}' is a high priority task. Try to complete it soon.")
     case "medium":
-        message = f"Reminder: '{task}' is a medium priority task"
+        if time_bound == "yes":
+            print(f"Reminder: '{task}' is a medium priority task that requires attention today.")
+        else:
+            print(f"Note: '{task}' is a medium priority task. Schedule it as needed.")
     case "low":
-        message = f"Note: '{task}' is a low priority task"
+        if time_bound == "yes":
+            print(f"Reminder: '{task}' is a low priority task, but it's time-sensitive. Don't forget it today!")
+        else:
+            print(f"Note: '{task}' is a low priority task. Consider completing it when you have free time.")
     case _:
-        message = f"Note: '{task}' has an unspecified priority"
-
-# Modify the message if the task is time-bound
-if time_bound == "yes":
-    if priority in ["high", "medium"]:
-        message += " that requires immediate attention today!"
-    elif priority == "low":
-        message += ", but it is time-bound, so try to complete it soon."
-    else:
-        message += " that requires immediate attention today!"
-else:
-    if priority == "low":
-        message += ". Consider completing it when you have free time."
-    else:
-        message += "."
-
-# Print the customized reminder
-print(message)
+        print("Invalid priority entered. Please enter high, medium, or low.")
