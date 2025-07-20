@@ -1,5 +1,3 @@
-# shopping_list_manager.py
-
 def display_menu():
     print("\nShopping List Manager")
     print("1. Add Item")
